@@ -13,10 +13,9 @@ ini_set('display_errors', 0); // Cambiado a 0 para producción
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/php_errors.log');
 
-// Iniciar sesión
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+// Iniciar sesión (propia del módulo Agencia; no se comparte con Ventas)
+require_once __DIR__ . '/auth.php';
+iniciarSesionModulo('agencia');
 
 // Función de depuración
 function debugLog($message, $data = null) {
@@ -35,7 +34,7 @@ function debugLog($message, $data = null) {
 debugLog('=== INICIO DE PROCESO LOGIN ===');
 
 // Verificar si el usuario ya está logueado
-if (isset($_SESSION['usuario_id']) && isset($_SESSION['rol'])) {
+if (isset($_SESSION['usuario_id']) && isset($_SESSION['rol']) && ($_SESSION['modulo'] ?? null) === 'agencia') {
     debugLog('Usuario ya tiene sesión activa', [
         'usuario_id' => $_SESSION['usuario_id'],
         'rol' => $_SESSION['rol']
@@ -56,13 +55,16 @@ $conexion = null;
 
 // Verificar si hay datos POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    debugLog('Método POST recibido', $_POST);
+    // No registrar la contraseña en el log
+    $post_seguro = $_POST;
+    if (isset($post_seguro['contraseña'])) { $post_seguro['contraseña'] = '***'; }
+    debugLog('Método POST recibido', $post_seguro);
     
     // Validar que existan los campos
     if (!isset($_POST['correo']) || !isset($_POST['contraseña'])) {
         $mensaje = "Por favor complete todos los campos";
         $mensaje_tipo = "danger";
-        debugLog('Campos POST incompletos', $_POST);
+        debugLog('Campos POST incompletos', array_keys($_POST));
     } else {
         $correo = trim($_POST['correo']);
         $contraseña = $_POST['contraseña'];
@@ -121,7 +123,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     ]);
                     
                     if (password_verify($contraseña, $hash)) {
+                        // Descartar TODO rastro de una sesión previa (otro rol/usuario)
+                        // para que no se hereden permisos, salas u otros datos.
+                        $_SESSION = [];
                         session_regenerate_id(true);
+                        marcarSesionModulo();
                         $_SESSION['usuario_id'] = $id;
                         $_SESSION['nombre'] = $nombre;
                         $_SESSION['apemat'] = $apemat;
