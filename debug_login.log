@@ -1,0 +1,42 @@
+[2026-01-23 23:54:42] === INICIO DE PROCESO LOGIN ===
+[2026-01-23 23:54:42] Método no POST - GET
+[2026-01-23 23:54:42] === FIN DE PROCESO LOGIN ===
+[2026-01-23 23:56:09] === INICIO DE PROCESO LOGIN ===
+[2026-01-23 23:56:09] Método no POST - GET
+[2026-01-23 23:56:09] === FIN DE PROCESO LOGIN ===
+[2026-01-23 23:56:47] === INICIO DE PROCESO LOGIN ===
+[2026-01-23 23:56:47] Método no POST - GET
+[2026-01-23 23:56:47] === FIN DE PROCESO LOGIN ===
+[2026-01-23 23:56:52] === INICIO DE PROCESO LOGIN ===
+[2026-01-23 23:56:52] Método POST recibido - Array
+(
+    [correo] => a.sanchez@grupoideas.mx
+    [contraseña] => 123456
+)
+
+[2026-01-23 23:56:52] Excepción en login - Access denied for user 'root'@'localhost' (using password: YES)
+[2026-01-23 23:56:52] === FIN DE PROCESO LOGIN ===
+[2026-01-24 00:17:03] === INICIO DE PROCESO LOGIN ===
+[2026-01-24 00:17:03] Método no POST - GET
+[2026-01-24 00:17:03] === FIN DE PROCESO LOGIN ===
+[2026-01-24 00:17:08] === INICIO DE PROCESO LOGIN ===
+[2026-01-24 00:17:08] Método POST recibido - Array
+(
+    [correo] => a.sanchez@grupoideas.mx
+    [contraseña] => 123456
+)
+
+[2026-01-24 00:17:08] Excepción en login - Access denied for user 'root'@'localhost' (using password: YES)
+[2026-01-24 00:17:08] === FIN DE PROCESO LOGIN ===
+[2026-01-27 06:52:36] === INICIO DE PROCESO LOGIN ===
+[2026-01-27 06:52:36] Método no POST - GET
+[2026-01-27 06:52:36] === FIN DE PROCESO LOGIN ===
+[2026-01-27 06:52:36] === INICIO DE PROCESO LOGIN ===
+[2026-01-27 06:52:36] Método no POST - GET
+[2026-01-27 06:52:36] === FIN DE PROCESO LOGIN ===
+[2026-06-16 17:27:24] === INICIO DE PROCESO LOGIN ===
+[2026-06-16 17:27:24] Método no POST - GET
+[2026-06-16 17:27:24] === FIN DE PROCESO LOGIN ===
+[2026-07-31 02:19:02] === INICIO DE PROCESO LOGIN ===
+[2026-07-31 02:19:02] Método no POST - GET
+[2026-07-31 02:19:02] === FIN DE PROCESO LOGIN ===
